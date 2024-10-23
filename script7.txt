@@ -1,0 +1,39 @@
+
+
+ln -v {source} {hard_link_name}
+
+cat {source}
+cat {hard_link_name}
+
+
+rm {source}
+ 
+
+cat {hard_link_name}
+
+ln -v -s {source} {symbolic_link_name}
+
+cat {source}
+cat {symbolic_link_name}
+
+rm {source}
+
+cat {symbolic_link_name}
+
+ls -la
+
+ 
+1.Створіть тестовий файл test_permissions
+touch test_permissions
+
+cd /proc
+
+cat version
+
+cat cpuinfo
+
+
+cd {PID} 
+
+
+sudo cat stack
