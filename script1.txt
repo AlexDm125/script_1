@@ -1,0 +1,19 @@
+#!/bin/bash
+pid=$1
+
+pmap -x $pid | grep anon > tmp
+
+rssData=$(awk -F " " '{Total=Total + $3} END {print Total}' tmp)
+
+pmap -x $pid | grep stack > tmp
+
+rssStack=$(awk -F " " '{Total=Total + $3} END {print Total}' tmp)
+
+pmap -x $pid | grep -Ev "anon|stack" > tmp
+
+rssCode=$(awk -F " " '{Total=Total + $3} END {print Total}' tmp)
+
+echo "Process $pid stores in RAM next data
+code: $rssCode Kb
+data: $rssData Kb
+stack: $rssStack Kb"
