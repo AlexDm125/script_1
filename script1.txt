@@ -1,19 +1,25 @@
-#!/bin/bash
-pid=$1
-
-pmap -x $pid | grep anon > tmp
-
-rssData=$(awk -F " " '{Total=Total + $3} END {print Total}' tmp)
-
-pmap -x $pid | grep stack > tmp
-
-rssStack=$(awk -F " " '{Total=Total + $3} END {print Total}' tmp)
-
-pmap -x $pid | grep -Ev "anon|stack" > tmp
-
-rssCode=$(awk -F " " '{Total=Total + $3} END {print Total}' tmp)
-
-echo "Process $pid stores in RAM next data
-code: $rssCode Kb
-data: $rssData Kb
-stack: $rssStack Kb"
+alex@ubuntu:~$ sudo apt install curl
+[sudo] пароль до alex: 
+Зчитування переліків пакунків... Виконано
+Побудова дерева залежностей... Виконано            
+Зчитування інформації про стан... Виконано   
+НОВІ пакунки, які будуть встановлені:
+  curl
+оновлено 0, встановлено 1 нових, 0 відмічено для видалення і 15 не оновлено.
+Необхідно завантажити 227 kB архівів.
+Після цієї операції об'єм зайнятого дискового простору зросте на 534 kB.
+Ігн:1 http://ua.archive.ubuntu.com/ubuntu noble-updates/main amd64 curl amd64 8.5.0-2ubuntu10.4
+Пом:1 http://security.ubuntu.com/ubuntu noble-updates/main amd64 curl amd64 8.5.0-2ubuntu10.4
+  404  Not Found [IP: 77.120.62.8 80]
+E: Не вдалося завантажити http://security.ubuntu.com/ubuntu/pool/main/c/curl/curl_8.5.0-2ubuntu10.4_amd64.deb  404  Not Found [IP: 77.120.62.8 80]
+E: Неможливо завантажити деякі архіви, імовірно треба виконати apt-get update або спробувати повторити запуск з ключем --fix-missing?
+alex@ubuntu:~$ curl https://google.com
+Команда «curl» не знайдена, але може бути встановлена ​​з:
+sudo snap install curl  # version 8.1.2, or
+sudo apt  install curl  # version 8.5.0-2ubuntu10.4
+Див. «snap info curl» для додаткових версій.
+alex@ubuntu:~$ curl https://google.com -v
+Команда «curl» не знайдена, але може бути встановлена ​​з:
+sudo snap install curl  # version 8.1.2, or
+sudo apt  install curl  # version 8.5.0-2ubuntu10.4
+Див. «snap info curl» для додаткових версій.
